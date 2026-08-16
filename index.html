@@ -383,11 +383,11 @@
 
         function showShop() { updateUI(); showScreen('shopScreen'); }
 
+        // الإصلاح المباشر للدالة التي كانت مقطوعة
         function buyItem(cost, type, val) {
             if (currentUser.pts < cost) return alert('نقاطك غير كافية!');
             if (type === 'double') {
                 if (currentUser.multiplier === 2) return alert('الميزة مفعلة لديك مسبقاً!');
                 currentUser.multiplier = 2;
             } else if (type === 'welcome') {
-                currentUser.welcomeMsg = val;
-            } else if (type === 'winMsg'
+                currentUser.welcome
