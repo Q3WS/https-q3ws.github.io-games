@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>موقع ألعاب QWS</title>
 
-    <!-- الأسطر الخاصة بملء الشاشة بدون شريط متصفح -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -53,7 +52,6 @@
         <!-- 1. شاشة البداية -->
         <div id="startScreen" class="screen active">
             <h2 style="margin-bottom:15px; color:#a855f7;">مرحباً في موقع ألعاب QWS ⚙️</h2>
-            <!-- الزر هنا يقوم بتفعيل الشاشة الكاملة والانتقال تلقائياً -->
             <button class="btn" onclick="openFullScreen(); showAuthOption();">متابعة</button>
         </div>
 
@@ -192,14 +190,16 @@
 
     <script>
         function openFullScreen() {
-            let elem = document.documentElement;
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) {
-                elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) {
-                elem.msRequestFullscreen();
-            }
+            try {
+                let elem = document.documentElement;
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen().catch(()=>{});
+                } else if (elem.webkitRequestFullscreen) {
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen();
+                }
+            } catch(e) {}
         }
 
         let accounts = {};
@@ -390,3 +390,4 @@
                 currentUser.multiplier = 2;
             } else if (type === 'welcome') {
                 currentUser.welcomeMsg = val;
+            } else if (type === 'winMsg'
